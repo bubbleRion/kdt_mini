@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <button class="btn1">click</button>
+  <button class="btn2">click</button>
+
+
+  <script>
+    let isTrue = true
+    const num1 = document.getElementsByTagName("div")
+    const btn1 = document.querySelector(".btn1")
+    const btn2 = document.querySelector(".btn2")
+    let test = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    let countNum = 0;
+    btn1.addEventListener("click", () => {
+      for (let i = 0; i < 4; i++) {
+        num1[i].textContent = test[countNum];
+        countNum++
+      }
+      isTrue = true
+    })
+    console.log(countNum)
+    btn2.addEventListener("click", () => {
+      if (isTrue) {
+        for (let i = 0; i < 4; i++) {
+          num1[i].textContent = test[countNum - 5];
+          countNum--
+        }
+        isTrue = false;
+
+      }
+      else {
+        for (let i = 0; i < 4; i++) {
+          num1[i].textContent = test[countNum - 1];
+          countNum--
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

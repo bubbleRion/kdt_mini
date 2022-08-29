@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .imagebox {
+      transition: 1s;
+      border-radius: 20px;
+    }
+
+    .imagebox:hover {
+      transform: scale(1.1);
+
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    // 슬라이드 이동, 체크 변수
+
+    // body style
+    const body = document.body;
+    body.style.height = "100vh"
+    body.style.display = "flex"
+    body.style.alignItems = "center"
+    body.style.justifyContent = "center"
+    // left button style
+    const leftButton = document.createElement("div")
+    body.appendChild(leftButton)
+    leftButton.innerHTML = "<"
+    leftButton.style.fontSize = "70px"
+    leftButton.style.lineHeight = "270px"
+    leftButton.style.margin = "10px"
+    leftButton.style.cursor = "pointer"
+    // root style
+    const root = document.createElement("div")
+    body.appendChild(root)
+    root.style.width = "950px";
+    root.style.height = "300px";
+    root.style.border = "1px solid black"
+    root.style.borderRadius = "10px"
+    root.style.display = "flex";
+    root.style.overflow = "hidden"
+    // right button style
+    const rightButton = document.createElement("div")
+    body.appendChild(rightButton)
+    rightButton.innerHTML = ">"
+    rightButton.style.fontSize = "70px"
+    rightButton.style.lineHeight = "270px"
+    rightButton.style.margin = "10px"
+    rightButton.style.cursor = "pointer"
+
+
+    // 포켓몬 수
+    // let pokemon;
+    // let poka = Number(prompt("보고싶은 포켓몬은 몇마리?"))
+    console.log(typeof (poka))
+    if (typeof (poka) === typeof (1) && poka > 1) {
+      pokemon = Math.floor(Math.abs(poka))
+    }
+    else {
+      pokemon = 50;
+    }
+    let isTrue = 0;
+
+    // right button event
+    let count = 0;
+    leftButton.addEventListener("click", () => {
+      count += 240
+      if (count <= 720) {
+        for (let i = 0; i < root.children.length; i++) {
+          root.children[i].style.transform = `translateX(${count}px)`
+          root.children[i].style.transition = "0.8s"
+        }
+      }
+      else {
+        count -= 240
+      }
+
+    })
+    // left button event
+    rightButton.addEventListener("click", () => {
+      // console.log(count)
+      count -= 240
+      if (count > -(240 * pokemon)) {
+        for (let i = 0; i < root.children.length; i++) {
+          root.children[i].style.transform = `translateX(${count}px)`
+          root.children[i].style.transition = "0.8s"
+        }
+      }
+      else {
+        count += 240
+      }
+    })
+    const pokemonKoName = []
+
+    // 포켓몬 api 관련
+    const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon/?limit=${pokemon}`;
+    const request = new XMLHttpRequest();
+    request.open("GET", _BASIC_URL);
+    request.responseType = "json";
+    request.send();
+
+    request.addEventListener('load', () => {
+      const _POKEMON_API = request.response;
+      // console.dir(_POKEMON_API)
+      const { results } = _POKEMON_API
+      // console.log(results)
+      // results.forEach((item) => { slideItem.push(item.name) })
+      pokemonFunc().then(() => {
+
+
+        results.forEach((item, index) => {
+          let randomColor1 = Math.floor(Math.random() * 9);
+          let randomColor2 = Math.floor(Math.random() * 9);
+          let randomColor3 = Math.floor(Math.random() * 9);
+          const paddedIndex = ("00" + (index + 1)).slice(-3);
+
+          root.innerHTML += `<div style="display: flex; justify-content : center; align-items :center; flex-direction: column; font-size: 1.2rem; color: black; margin : 20px" width : 200px; height : 200px; >
+            <img class="imagebox" style="width : 200px; height: 200px; background-color : #${randomColor1}${randomColor2}${randomColor3} ; "src=https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png>
+            <div>${paddedIndex + ". " + pokemonKoName[index]}<div>
+            </div>`
+        })
+      })
+    });
+    async function pokemonFunc() {
+
+      for (let i = 0; i < pokemon; i++) {
+        let URL = `https://pokeapi.co/api/v2/pokemon-species/${i + 1}`
+
+        await fetch(URL).then((res) => res.json())
+          .then((data) => pokemonKoName.push(data.names[2].name))
+
+      }
+      // hello
+    }
+
+
+  </script>
+</body>
+
+</html>
