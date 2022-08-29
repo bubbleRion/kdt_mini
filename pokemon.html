@@ -70,26 +70,25 @@
     // }
     // let isTrue = 0;
 
-    // right button event
+    // count를 사용해서 움직이는 이벤트 컨트롤
     let count = 0;
+
+    // right button event
+
     leftButton.addEventListener("click", () => {
       count += 240
-      if (count <= 720) {
-        for (let i = 0; i < root.children.length; i++) {
-          root.children[i].style.transform = `translateX(${count}px)`
-          root.children[i].style.transition = "0.8s"
-        }
+      for (let i = 0; i < root.children.length; i++) {
+        root.children[i].style.transform = `translateX(${count}px)`
+        root.children[i].style.transition = "0.8s"
       }
     })
     // left button event
     rightButton.addEventListener("click", () => {
       // console.log(count)
       count -= 240
-      if (count > -(240 * pokemon)) {
-        for (let i = 0; i < root.children.length; i++) {
-          root.children[i].style.transform = `translateX(${count}px)`
-          root.children[i].style.transition = "0.8s"
-        }
+      for (let i = 0; i < root.children.length; i++) {
+        root.children[i].style.transform = `translateX(${count}px)`
+        root.children[i].style.transition = "0.8s"
       }
 
     })
