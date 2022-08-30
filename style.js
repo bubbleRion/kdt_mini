@@ -15,6 +15,17 @@ const domStyling = {
     element.style.border = borderValue;
     element.style.borderRadius = borderRadiusValue;
   },
+  font: function (element, fontSizeValue) {
+    element.style.fontSize = fontSizeValue;
+  },
+  mouse: function (element, cursor) {
+    element.style.cursor = "pointer";
+  },
+  trans: function (element, transformValue, transitionValue) {
+    element.style.transform = transformValue;
+    element.style.trasition = transitionValue;
+  },
+  // font: function (element, fontSizeValue, )
 };
 
 export default domStyling;
