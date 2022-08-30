@@ -16,4 +16,5 @@ const domStyling = {
     element.style.borderRadius = borderRadiusValue;
   },
 };
+
 export default domStyling;
