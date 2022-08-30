@@ -1,8 +1,11 @@
 // https://digimon-api.vercel.app/api/digimon
 import digiBice from "./digimonAPI.js"
 import slide from "./slide.js"
+import style from "./style.js"
 const root = document.getElementById("root");
 const div = document.createElement("div");
+
+
 root.style.display = "flex"
 root.style.alignItems = "center"
 div.style.display = "flex"

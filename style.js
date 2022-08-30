@@ -7,10 +7,11 @@ const domStyling = {
     element.style.backgroundColor = backgroundColorValue;
     element.style.color = colorValue;
   },
-  display: function (element, flexDirection = c) {
-    element.style.flexDirection;
+  display: function (element, flexDirectionValue) {
+    element.style.display = flex;
+    element.style.flexDirection = flexDirectionValue;
   },
-  border: function (element, border, borderRadius) {
+  border: function (element, borderValue, borderRadiusValue) {
     element.style.border = borderValue;
     element.style.borderRadius = borderRadiusValue;
   },
