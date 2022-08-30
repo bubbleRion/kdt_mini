@@ -109,27 +109,28 @@
     request.send();
 
     request.addEventListener('load', () => {
+      pokemonDiv()
+      // console.log(results)
+      // results.forEach((item) => { slideItem.push(item.name) })
+
+    });
+
+    function pokemonDiv() {
       const _POKEMON_API = request.response;
       // console.dir(_POKEMON_API)
       const { results } = _POKEMON_API
-      // console.log(results)
-      // results.forEach((item) => { slideItem.push(item.name) })
-      pokemonFunc().then(() => {
+      results.forEach((item, index) => {
+        let randomColor1 = Math.floor(Math.random() * 9);
+        let randomColor2 = Math.floor(Math.random() * 9);
+        let randomColor3 = Math.floor(Math.random() * 9);
+        const paddedIndex = ("00" + (index + 1)).slice(-3);
 
-
-        results.forEach((item, index) => {
-          let randomColor1 = Math.floor(Math.random() * 9);
-          let randomColor2 = Math.floor(Math.random() * 9);
-          let randomColor3 = Math.floor(Math.random() * 9);
-          const paddedIndex = ("00" + (index + 1)).slice(-3);
-
-          root.innerHTML += `<div style="display: flex; justify-content : center; align-items :center; flex-direction: column; font-size: 1.2rem; color: black; margin : 20px" width : 200px; height : 200px; >
+        root.innerHTML += `<div style="display: flex; justify-content : center; align-items :center; flex-direction: column; font-size: 1.2rem; color: black; margin : 20px" width : 200px; height : 200px; >
             <img class="imagebox" style="width : 200px; height: 200px; background-color : #${randomColor1}${randomColor2}${randomColor3} ; "src=https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png>
-            <div>${paddedIndex + ". " + pokemonKoName[index]}<div>
+            <div>${paddedIndex + ". " + item.name}<div>
             </div>`
-        })
       })
-    });
+    }
     async function pokemonFunc() {
 
       for (let i = 0; i < pokemon; i++) {
@@ -139,9 +140,12 @@
           .then((data) => pokemonKoName.push(data.names[2].name))
 
       }
-      // hello
-    }
 
+    }
+    pokemonFunc().then(() => {
+      console.log(pokemonKoName)
+    })
+// 제가 비동기 포켓몬 함수를 만들었는데 이 함수의 역할은 포켓몬 한글 이름이 출력되도록 하는 거에요. 이걸 슬라이드에 적용하려면 어떻게 해야되나요?
 
   </script>
 </body>

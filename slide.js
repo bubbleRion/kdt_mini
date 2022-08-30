@@ -11,8 +11,8 @@ export default async function left(leftButton ,rightButton,div, digimon, count){
   
     rightButton.addEventListener("click", ()=>{
       count -= 100
-      console.log(count)
-      console.log(div.children[0])
+      // console.log(count)
+      // console.log(div.children[0])
     for(let i = 0; i < digimon.length; i++){
       
       div.children[i].style.transform = `translateX(${count}px)`
