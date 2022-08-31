@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">click</button>
+  <div id="root"></div>
+  <div id="root2"></div>
+  <div id="root3"></div>
+
+  <script>
+    const button = document.getElementById("btn");
+    const root = document.getElementById("root");
+    const root2 = document.getElementById("root2")
+    const root3 = document.getElementById("root3")
+    // Q1
+    button.addEventListener("click", () => {
+      let randomNum1 = Math.floor(Math.random() * 19 + 1)
+      let randomNum2 = Math.floor(Math.random() * 19 + 1)
+      let randomNum3 = Math.floor(Math.random() * 19 + 1)
+
+      console.log(randomNum1, randomNum2, randomNum3)
+      randomData[1] = ran
+
+      root.innerHTML = formula(randomNum1, randomNum2, randomNum3)
+    })
+    function formula(a, b, c) {
+      return (a + b + c) / 3 < 10 ? `${a}${b}${c}under` : `${"" + a + b + c}over`
+    }
+    // Advanced a
+    let randomData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    let inputData = []
+    button.addEventListener("click", pickMe)
+    function pickMe() {
+      inputData = []
+      for (let i = 0; i < 3; i++) {
+        let randomNum = Math.floor(Math.random() * (randomData.length - 1) + 1)
+        // console.log(sameNum(randomNum))
+        if (!sameNum(randomNum)) {
+          inputData.push(randomNum)
+        }
+        else {
+          i--
+        }
+      }
+      // console.log(inputData)
+      root2.innerHTML = inputData
+      objectData.first = inputData[0];
+      objectData.second = inputData[1];
+      objectData.third = inputData[2];
+      // console.dir(objectData)
+      root3.innerHTML = median(inputData)
+    }
+    function sameNum(n) {
+      for (var i = 0; i < inputData.length; i++) {
+        return inputData.find((e) => (e === n));
+      }
+
+    }
+    // Advanced b
+    const objectData = {
+      first: null,
+      second: null,
+      third: null,
+    }
+    function median(data) {
+      data = data.sort((a, b) => a - b)
+      n = Math.floor(data.length / 2)
+      return (data[n] + data[data.length - 1 - n]) / 2
+    }
+  </script>
+</body>
+
+</html>
