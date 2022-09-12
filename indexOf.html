@@ -28,8 +28,8 @@
             return randomA
         }
         button.addEventListener("click", ()=>{
-            result.innerHTML =  randomA.indexOf(input.innerHTML)
-
+            console.log(input.value)
+            result.innerHTML =  randomA.indexOf(Number(input.value))
         })
     </script>
 </body>
